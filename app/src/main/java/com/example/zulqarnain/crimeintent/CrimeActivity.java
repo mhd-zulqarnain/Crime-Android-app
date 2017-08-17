@@ -11,12 +11,12 @@ import java.util.UUID;
 
 public class CrimeActivity extends SingleFragmentActivity {
 
-    private final static String CRIME_ID="com.zeelog.crimeactivity.crimeid";
+    public final static String CRIME_ID="com.zeelog.crimeactivity.crimeid";
 
     @Override
     public Fragment createFragement() {
         UUID cimeID = (UUID) getIntent().getSerializableExtra(CRIME_ID);
-       return new CrimeFragment(cimeID);
+       return new CrimeFragment();
     }
 
     public static Intent newIntent(Context packageName, UUID crimID){

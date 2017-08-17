@@ -39,29 +39,32 @@ public class CrimeListFragment extends Fragment {
         recyclerView.setAdapter(crimeAdapter);
     }
 
-    //-------------------------------------Adapter-----------------------------------------------
+    @Override
+    public void onResume(){
+        super.onResume();
+        updateUI();
+    }
 
+    //-------------------------------------Adapter-------------------------------------------------------------------------///
     class CrimeRecyclerAdpater extends RecyclerView.Adapter<CrimeRecyclerAdpater.CrimeViewHolder> {
         private List<Crime> crimes;
-
         CrimeRecyclerAdpater(List<Crime> crimes){
+
             this.crimes = crimes;
         }
-
         @Override
         public CrimeViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             CrimeViewHolder crimeViewHolder = new CrimeViewHolder(LayoutInflater.from(getActivity()).
                     inflate(R.layout.single_crime_row_view, parent, false));
             return crimeViewHolder;
         }
-
         @Override
         public void onBindViewHolder(CrimeViewHolder holder, int position) {
             holder.bindView(crimes.get(position));
         }
-
         @Override
-        public int getItemCount() {
+        public int getItemCount()
+        {
             return mCrimes.size();
         }
 
@@ -76,10 +79,11 @@ public class CrimeListFragment extends Fragment {
                 crimeTitle = (TextView)itemView.findViewById(R.id.list_item_crime_title_text_view) ;
                 crimeDate = (TextView)itemView.findViewById(R.id.list_item_crime_date_text_view) ;
                 mCrimeSolved = (CheckBox) itemView.findViewById(R.id.list_item_crime_check_box) ;
-                mCrimeSolved.setOnClickListener(this);
+                crimeTitle.setOnClickListener(this);
             }
 
             public void bindView(Crime crime){
+                mCrime=crime;
                 crimeTitle.setText(crime.getCrimeTitle());
                 crimeDate.setText(crime.getCrimeDate().toString());
                 mCrimeSolved.setChecked(crime.ismCrimeSolved());

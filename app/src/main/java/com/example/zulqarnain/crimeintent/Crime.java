@@ -15,7 +15,7 @@ public class Crime {
 
     public Crime() {
         this.crimeDate = new Date();
-        crimeId = UUID.randomUUID();
+        this.crimeId = UUID.randomUUID();
     }
 
 
