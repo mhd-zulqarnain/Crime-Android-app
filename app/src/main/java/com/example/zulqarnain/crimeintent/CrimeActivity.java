@@ -9,6 +9,9 @@ import android.os.Bundle;
 
 import java.util.UUID;
 
+
+import static com.example.zulqarnain.crimeintent.CrimeFragment.newInstance;
+
 public class CrimeActivity extends SingleFragmentActivity {
 
     public final static String CRIME_ID="com.zeelog.crimeactivity.crimeid";
@@ -16,7 +19,7 @@ public class CrimeActivity extends SingleFragmentActivity {
     @Override
     public Fragment createFragement() {
         UUID cimeID = (UUID) getIntent().getSerializableExtra(CRIME_ID);
-       return new CrimeFragment();
+       return newInstance(cimeID);
     }
 
     public static Intent newIntent(Context packageName, UUID crimID){
@@ -24,6 +27,7 @@ public class CrimeActivity extends SingleFragmentActivity {
         intent.putExtra(CRIME_ID,crimID);
         return intent;
     }
+
 
 
 }
